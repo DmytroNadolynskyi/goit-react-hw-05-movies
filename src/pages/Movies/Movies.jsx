@@ -22,7 +22,7 @@ export default function Movies() {
   const [foundMovies, setFoundMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const location = useLocation();
+  // const location = useLocation();
 
   const query = searchParams.get('query');
   const searchRef = useRef();
