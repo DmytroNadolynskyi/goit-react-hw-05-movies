@@ -8,8 +8,16 @@ export const getTrandingMovies = async () => {
   return data.results;
 };
 
+export const getMovieByQuery = async query => {
+  const { data } = await axios.get(`/search/movie${API_KEY}&${query}`);
+  return data;
+};
 export const getMovieDetails = async movieId => {
   const { data } = await axios.get(`/movie/${movieId}${API_KEY}`);
+  return data;
+};
+export const getMovieReviews = async movieId => {
+  const { data } = await axios.get(`/movie/${movieId}/reviews${API_KEY}`);
   return data;
 };
 
@@ -18,12 +26,4 @@ export const getMovieCast = async movieId => {
   return data;
 };
 
-export const getMovieReviews = async movieId => {
-  const { data } = await axios.get(`/movie/${movieId}/reviews${API_KEY}`);
-  return data;
-};
 
-export const getMovieByQuery = async query => {
-  const { data } = await axios.get(`/search/movie${API_KEY}&${query}`);
-  return data;
-};

@@ -1,20 +1,14 @@
-
 import { SearchBox } from 'components/SearchBox/SearchBox';
 
 import Loader from 'components/Loader/Loader';
 import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { getMovieByQuery } from 'services/API';
-import {
-  
-  List,
-  Link,
-  
-} from './Movies.styled';
+import { List, Link } from './Movies.styled';
 
 export default function Movies() {
-  const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
 
   const location = useLocation();
@@ -25,7 +19,6 @@ export default function Movies() {
   const handleSubmit = event => {
     event.preventDefault();
     setSearchParams({ query: searchRef.current.value });
-    // searchRef.current.value = '';
   };
 
   useEffect(() => {
@@ -42,7 +35,7 @@ export default function Movies() {
 
   return (
     <>
-      <SearchBox searchRef={searchRef} handleSubmit ={handleSubmit } />
+      <SearchBox searchRef={searchRef} handleSubmit={handleSubmit} />
       {isLoading ? (
         <Loader />
       ) : (
