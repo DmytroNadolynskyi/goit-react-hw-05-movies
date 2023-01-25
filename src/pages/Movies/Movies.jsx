@@ -4,7 +4,7 @@ import { ReactComponent as Icon } from 'icons/zoom.svg';
 
 import Loader from 'components/Loader/Loader';
 import React, { useEffect, useRef, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import {  useSearchParams } from 'react-router-dom';
 import { getMovieByQuery } from 'services/API';
 import {
   NavBox,
