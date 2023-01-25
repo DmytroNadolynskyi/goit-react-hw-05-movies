@@ -4,7 +4,7 @@ import { ReactComponent as Icon } from 'icons/zoom.svg';
 
 import Loader from 'components/Loader/Loader';
 import React, { useEffect, useRef, useState } from 'react';
-import {  useSearchParams } from 'react-router-dom';
+import {  useSearchParams,useLocation } from 'react-router-dom';
 import { getMovieByQuery } from 'services/API';
 import {
   NavBox,
@@ -22,7 +22,7 @@ export default function Movies() {
   const [foundMovies, setFoundMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const location = useLocation();
+  const location = useLocation();
 
   const query = searchParams.get('query');
   const searchRef = useRef();
@@ -70,7 +70,7 @@ export default function Movies() {
       ) : (
         <div >
           <List>
-            {foundMovies.map(({id,location,title}) => (
+            {foundMovies.map(({id,title}) => (
               <li key={id}>
                 <Link
                   to={`${id}`}
