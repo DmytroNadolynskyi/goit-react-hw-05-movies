@@ -1,10 +1,8 @@
-
-
 import { ReactComponent as Icon } from 'icons/zoom.svg';
 
 import Loader from 'components/Loader/Loader';
 import React, { useEffect, useRef, useState } from 'react';
-import {  useSearchParams,useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { getMovieByQuery } from 'services/API';
 import {
   NavBox,
@@ -19,7 +17,7 @@ import {
 
 export default function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [foundMovies, setFoundMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const location = useLocation();
@@ -38,8 +36,7 @@ export default function Movies() {
       setIsLoading(true);
       getMovieByQuery(searchParams)
         .then(data => {
-          setFoundMovies([...data.results]);
-          
+          setMovies([...data.results]);
         })
         .catch(err => err)
         .finally(() => setIsLoading(false));
@@ -47,36 +44,31 @@ export default function Movies() {
   }, [query, searchParams]);
 
   return (
-    
     <>
       <NavBox>
         <SearchbarCss>
-        <SearchForm  onSubmit={handleSubmit}>
-          <SearchFormButton type="submit">
+          <SearchForm onSubmit={handleSubmit}>
+            <SearchFormButton type="submit">
               <Icon />
               <SearchFormButtonLabel>Search</SearchFormButtonLabel>
-          </SearchFormButton>
-          <SearchFormInput
-            ref={searchRef}
-            type="text"
-            placeholder="Search movies"
-            required
-          />
+            </SearchFormButton>
+            <SearchFormInput
+              ref={searchRef}
+              type="text"
+              placeholder="Search movies"
+              required
+            />
           </SearchForm>
-          </SearchbarCss>
+        </SearchbarCss>
       </NavBox>
       {isLoading ? (
         <Loader />
       ) : (
-        <div >
+        <div>
           <List>
-            {foundMovies.map(({id,title}) => (
+            {movies.map(({ id, title }) => (
               <li key={id}>
-                <Link
-                  to={`${id}`}
-                  state={{ from: location }}
-                  
-                >
+                <Link to={`${id}`} state={{ from: location }}>
                   {title}
                 </Link>
               </li>
@@ -84,7 +76,6 @@ export default function Movies() {
           </List>
         </div>
       )}
-      
-      </>
+    </>
   );
 }

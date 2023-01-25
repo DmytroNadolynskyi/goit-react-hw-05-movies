@@ -1,12 +1,8 @@
-
 import Loader from 'components/Loader/Loader';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { getTrandingMovies } from 'services/API';
-import {
-  List,
-  Link,
-} from './Home.styled';
+import { List, Link } from './Home.styled';
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -20,7 +16,6 @@ export default function Home() {
   }, []);
 
   return (
-    
     <>
       <h2>Trending movies today</h2>
 
@@ -28,16 +23,13 @@ export default function Home() {
         <Loader />
       ) : (
         <List>
-          {movies.map(({id,title}) => (
+          {movies.map(({ id, title }) => (
             <li key={id}>
-              <Link to={`movies/${id}`} >
-                {title}
-              </Link>
+              <Link to={`movies/${id}`}>{title}</Link>
             </li>
           ))}
         </List>
       )}
-      </>
-    
+    </>
   );
 }

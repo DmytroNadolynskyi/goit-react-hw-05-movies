@@ -1,5 +1,3 @@
-
-
 import Loader from 'components/Loader/Loader';
 import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
@@ -11,10 +9,10 @@ import {
   List,
   Value,
   Overview,
- Info,
+  Info,
   Link,
   Genres,
-  InfoTitle
+  InfoTitle,
 } from './MovieDetails.styled';
 export default function MovieDetails() {
   const [movie, setMovie] = useState([]);
@@ -34,14 +32,8 @@ export default function MovieDetails() {
   const { poster_path, title, vote_average, overview, release_date, genres } =
     movie;
   return (
-    
     <>
-      
-      <Link to={backButton}>
-        
-          Go back
-       
-      </Link>
+      <Link to={backButton}>Go back</Link>
       {isLoading ? (
         <Loader />
       ) : (
@@ -88,17 +80,16 @@ export default function MovieDetails() {
           </MovieInfo>
         </Box>
       )}
-       <InfoTitle>Additional information</InfoTitle>
-            <Info>
-              <Link to={`cast`} state={{ from: location.state?.from }}>
-                Cast
-              </Link>
-              <Link to={`reviews`} state={{ from: location.state?.from }}>
-                Reviews
-              </Link>
-            </Info>
+      <InfoTitle>Additional information</InfoTitle>
+      <Info>
+        <Link to={`cast`} state={{ from: location.state?.from }}>
+          Cast
+        </Link>
+        <Link to={`reviews`} state={{ from: location.state?.from }}>
+          Reviews
+        </Link>
+      </Info>
       <Outlet />
-    
-      </>
+    </>
   );
 }

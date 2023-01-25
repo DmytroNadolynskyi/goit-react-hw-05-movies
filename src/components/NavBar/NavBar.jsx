@@ -5,7 +5,7 @@ const navItems = [
   { href: 'movies', text: 'Movies' },
 ];
 
- const NavBar = () => {
+const NavBar = () => {
   return (
     <Box>
       <Nav>
@@ -18,4 +18,4 @@ const navItems = [
     </Box>
   );
 };
-export default NavBar
+export default NavBar;
